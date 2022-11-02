@@ -7,6 +7,7 @@ export class Controller extends LitElement {
 		active: { type: Number },
 		lastPage: { type: Number },
 		pageActive: { type: Number },
+		initPage: { type: Number },
 	};
 
 	static styles = [styles];
@@ -18,8 +19,10 @@ export class Controller extends LitElement {
 			pages: 10,
 			next: { name: '>', disabled: false },
 		};
-		this.lastPage = 20;
+		this.lastPage = 15;
+		this.rangePages = 15;
 		this.pageActive = 1;
+		this.initPage = 0;
 	}
 
 	_handleClick(action) {
@@ -30,22 +33,55 @@ export class Controller extends LitElement {
 		);
 	}
 
+	_selectPage(page, index) {
+		let numberPage = page;
+
+		if (page === '...') {
+			numberPage = index === 1 ? this.initPage - 1 : this.lastPage + 1;
+		}
+
+		this.dispatchEvent(
+			new CustomEvent('selectPage', {
+				detail: numberPage,
+			})
+		);
+	}
+
 	_createPagination(pages) {
 		const pagination = [];
-		const lastPage = this.lastPage < pages ? this.lastPage : pages;
 
 		if (pages === 1) {
 			return [1];
 		}
 
-		for (let page = 0; page < lastPage; page++) {
+		this._redefinePagination();
+
+		for (let page = this.initPage; page < this.lastPage; page++) {
 			pagination.push(page + 1);
 		}
 
-		pages !== lastPage && (pagination[lastPage] = '...');
+		this.initPage > 1 && pagination.unshift('...');
+		pages !== this.lastPage && pagination.push('...');
+
 		return pagination;
 	}
-	k;
+
+	_redefinePagination() {
+		if (this.pageActive > this.lastPage) {
+			this.initPage = this.pageActive - 1;
+		}
+
+		if (this.pageActive > this.lastPage) {
+			const sumPages =
+				this.initPage + this.rangePages > this.buttons.pages
+					? this.buttons.pages - this.lastPage
+					: 15;
+
+			console.log(sumPages);
+
+			this.lastPage = this.initPage + sumPages;
+		}
+	}
 
 	get pagination() {
 		return this._createPagination(this.buttons.pages);
@@ -63,8 +99,15 @@ export class Controller extends LitElement {
 				</button>
 
 				${this.pagination.map(
-					(page) =>
-						html` <button class="btnPage ${this.pageActive === page ? 'active' : ''}">${page}</button> `
+					(page, index) =>
+						html`
+							<button
+								class="btnPage ${this.pageActive === page ? 'active' : ''}"
+								@click=${() => this._selectPage(page, index)}
+							>
+								${page}
+							</button>
+						`
 				)}
 
 				<button

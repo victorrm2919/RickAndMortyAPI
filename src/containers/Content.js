@@ -15,6 +15,7 @@ export class Content extends LitElement {
 		nextPage: { type: String },
 		previousPage: { type: String },
 		pages: { type: Number },
+		pageActive: { type: Number },
 	};
 
 	static styles = [styles];
@@ -37,18 +38,32 @@ export class Content extends LitElement {
 	_changePage(e) {
 		const action = e.detail;
 
+		this.cards = undefined;
+
 		if (action === 'next') {
 			this.url = this.nextPage;
+			this.pageActive++;
 		}
 
 		if (action === 'previous') {
 			this.url = this.previousPage;
+			this.pageActive--;
 		}
-
-		this.cards = undefined;
 	}
 
-	_openModal(e) {}
+	_selectPage(e) {
+		const page = e.detail;
+		const ref = this.nextPage;
+		const arrRef = ref.split('?');
+		const newUrl = `${arrRef[0]}?page=${page}`;
+		this.cards = undefined;
+		this.url = newUrl;
+		this.pageActive = page;
+	}
+
+	_openModal(e) {
+		console.log(e.detail);
+	}
 
 	get contentApp() {
 		return html`
@@ -86,7 +101,8 @@ export class Content extends LitElement {
 			<controller-content
 				.buttons=${pagination}
 				@onAction=${this._changePage}
-				.pageActive=${this.pageActive}
+				@selectPage=${this._selectPage}
+				pageActive=${this.pageActive}
 			></controller-content>
 			${when(
 				!this.cards,
