@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap');
+
+html {
+	box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+:root {
+	--color-primary: #24191a;
+	--color-secondary: #eeeeee;
+	--color-card: #f7f7f7;
+}
+
+.theme {
+	color: var(--color-primary);
+	background-color: var(--color-secondary);
+}
+
+.theme-alt {
+	color: var(--color-secondary);
+	background-color: var(--color-primary);
+}
