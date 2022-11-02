@@ -6,7 +6,6 @@ import styles from './styles/ContentStyles';
 import '../components/GetData';
 import '../components/Card';
 import './Pagination';
-import { transformWithEsbuild } from 'vite';
 
 export class Content extends LitElement {
 	static properties = {
