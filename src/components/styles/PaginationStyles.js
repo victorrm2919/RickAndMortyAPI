@@ -11,7 +11,9 @@ export default css`
 	}
 
 	.pagination button {
-		padding: 0.7rem;
+		width: 2.2rem;
+		height: 2.5rem;
+		margin: 0 .1rem;
 		border-radius: 5px;
 		border: 0;
 		background-color: var(--color-secondary);
@@ -19,6 +21,7 @@ export default css`
 		text-transform: uppercase;
 		font-size: 0.8rem;
 		transition: all 0.5s ease;
+		text-align: center;
 		cursor: pointer;
 	}
 

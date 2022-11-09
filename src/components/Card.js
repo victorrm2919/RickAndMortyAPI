@@ -1,4 +1,4 @@
-import { html, LitElement } from 'lit';
+import { html, LitElement, nothing } from 'lit';
 import styles from './styles/CardStyles';
 
 export class Card extends LitElement {
@@ -12,6 +12,8 @@ export class Card extends LitElement {
 		this.dispatchEvent(
 			new CustomEvent('viewCharacter', {
 				detail: url,
+				bubbles: true,
+				composed: true,
 			})
 		);
 	}

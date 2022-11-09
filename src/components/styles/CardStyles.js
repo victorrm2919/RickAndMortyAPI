@@ -2,13 +2,17 @@ import { css } from 'lit';
 
 export default css`
 	:host {
+		--card-width: 200px;
+		--card-height: 300px;
+
 		display: block;
+		margin: auto;
 	}
 
 	.card {
 		display: block;
-		height: 300px;
-		width: 200px;
+		height: var(--card-height);
+		width: var(--card-width);
 		text-align: center;
 		background-color: var(--color-card);
 		border-radius: 5px;
@@ -18,7 +22,7 @@ export default css`
 		transition: all 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
 	}
 
-	.card:hover {
+	.card:not(.modal):hover {
 		box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12), 0 10px 10px rgba(0, 0, 0, 0.24);
 		transform: scale(1.12);
 	}
@@ -29,6 +33,7 @@ export default css`
 		display: flex;
 		flex-direction: column;
 		justify-content: space-around;
+		transition: all 0.4s ease-in-out;
 	}
 
 	.card__img {
@@ -40,7 +45,7 @@ export default css`
 	}
 
 	.card__img img {
-		width: 100%
+		width: 100%;
 	}
 
 	.card__title {

@@ -28,3 +28,8 @@ body {
 	color: var(--color-secondary);
 	background-color: var(--color-primary);
 }
+
+
+.modal--active {
+	overflow: hidden;
+}

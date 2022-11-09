@@ -1,11 +1,12 @@
 import { LitElement, html } from 'lit';
 import { when } from 'lit/directives/when.js';
+import { until } from 'lit/directives/until.js';
 
 import styles from './styles/ContentStyles';
 
 import '../components/GetData';
 import '../components/Card';
-import './Pagination';
+import '../components/Pagination';
 
 export class Content extends LitElement {
 	static properties = {
@@ -24,11 +25,12 @@ export class Content extends LitElement {
 		super();
 		this.buttons = [];
 		this.pageActive = 1;
+		this.updateContent = false;
+		this.showModal = false
 	}
 
 	_receiveData(e) {
 		const data = e.detail;
-		console.log(data);
 		this.cards = data.results;
 		this.nextPage = data.info.next;
 		this.previousPage = data.info.prev;
@@ -37,22 +39,14 @@ export class Content extends LitElement {
 
 	_changePage(e) {
 		const action = e.detail;
-
 		this.cards = undefined;
-
-		if (action === 'next') {
-			this.url = this.nextPage;
-			this.pageActive++;
-		}
-
-		if (action === 'previous') {
-			this.url = this.previousPage;
-			this.pageActive--;
-		}
+		action === 'next' && this.pageActive++;
+		action === 'previous' && this.pageActive--;
+		action !== 'next' && action !== 'previous' && (this.pageActive = action);
+		this._selectPage(this.pageActive);
 	}
 
-	_selectPage(e) {
-		const page = e.detail;
+	_selectPage(page) {
 		const ref = this.nextPage;
 		const arrRef = ref.split('?');
 		const newUrl = `${arrRef[0]}?page=${page}`;
@@ -61,9 +55,7 @@ export class Content extends LitElement {
 		this.pageActive = page;
 	}
 
-	_openModal(e) {
-		console.log(e.detail);
-	}
+
 
 	get contentApp() {
 		return html`
@@ -72,7 +64,7 @@ export class Content extends LitElement {
 					${when(
 						this.cards.length > 0,
 						() => this.cardsApp,
-						() => html`<p>Selecciona un opción con datos.</p>`
+						() => html`<p>No existen datos.</p>`
 					)}
 				</div>
 			</div>
@@ -84,10 +76,25 @@ export class Content extends LitElement {
 			(character) => html`
 				<card-character
 					.character=${character}
-					@viewCharacter=${this._openModal}
 				></card-character>
 			`
 		)}`;
+	}
+
+	get getData() {
+		return html`
+			${until([
+				html`<get-data
+					.urlApi=${this.url}
+					@getDataApi=${this._receiveData}
+				></get-data>`,
+				this.loadingTemplate,
+			])}
+		`;
+	}
+
+	get loadingTemplate() {
+		return html` <p>Cargando...</p> `;
 	}
 
 	render() {
@@ -101,21 +108,13 @@ export class Content extends LitElement {
 			<controller-content
 				.buttons=${pagination}
 				@onAction=${this._changePage}
-				@selectPage=${this._selectPage}
-				pageActive=${this.pageActive}
+				.pageActive=${this.pageActive}
+				.updateContent=${this.updateContent}
 			></controller-content>
 			${when(
 				!this.cards,
-				() => html`
-					<get-data
-						urlApi=${this.url}
-						@getDataApi=${this._receiveData}
-					></get-data>
-					<p>Cargando ...</p>
-				`,
-				() => {
-					return this.contentApp;
-				}
+				() => this.getData,
+				() => this.contentApp
 			)}
 		`;
 	}

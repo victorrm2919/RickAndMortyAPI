@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import styles from './styles/PaginationStyles';
+import styles from '../components/styles/PaginationStyles';
 
 export class Controller extends LitElement {
 	static properties = {
@@ -25,21 +25,26 @@ export class Controller extends LitElement {
 		this.initPage = 0;
 	}
 
-	_handleClick(action) {
+	_handleClick(action, index = 0) {
+		let actionHandle = action;
+
+		if (this.action !== 'next' || this.action !== 'previous') {
+			let numberPage = action;
+			if (action === '...') {
+				numberPage = index === 0 ? this.initPage : this.lastPage + 1;
+			}
+
+			actionHandle = numberPage;
+		}
+
 		this.dispatchEvent(
 			new CustomEvent('onAction', {
-				detail: action,
+				detail: actionHandle,
 			})
 		);
 	}
 
 	_selectPage(page, index) {
-		let numberPage = page;
-
-		if (page === '...') {
-			numberPage = index === 1 ? this.initPage - 1 : this.lastPage + 1;
-		}
-
 		this.dispatchEvent(
 			new CustomEvent('selectPage', {
 				detail: numberPage,
@@ -54,12 +59,11 @@ export class Controller extends LitElement {
 			return [1];
 		}
 
-		this._redefinePagination();
-
 		for (let page = this.initPage; page < this.lastPage; page++) {
 			pagination.push(page + 1);
 		}
 
+		this._redefinePagination();
 		this.initPage > 1 && pagination.unshift('...');
 		pages !== this.lastPage && pagination.push('...');
 
@@ -71,13 +75,16 @@ export class Controller extends LitElement {
 			this.initPage = this.pageActive - 1;
 		}
 
+		if (this.pageActive < this.initPage + 1) {
+			this.initPage = this.initPage - this.rangePages;
+			this.lastPage = this.pageActive;
+		}
+
 		if (this.pageActive > this.lastPage) {
 			const sumPages =
 				this.initPage + this.rangePages > this.buttons.pages
 					? this.buttons.pages - this.lastPage
 					: 15;
-
-			console.log(sumPages);
 
 			this.lastPage = this.initPage + sumPages;
 		}
@@ -103,7 +110,7 @@ export class Controller extends LitElement {
 						html`
 							<button
 								class="btnPage ${this.pageActive === page ? 'active' : ''}"
-								@click=${() => this._selectPage(page, index)}
+								@click=${() => this._handleClick(page, index)}
 							>
 								${page}
 							</button>

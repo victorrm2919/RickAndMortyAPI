@@ -1,9 +1,8 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, css } from 'lit';
 
 export class GetData extends LitElement {
 	static properties = {
 		urlApi: { type: String },
-		method: { type: String },
 	};
 
 	static styles = css`
