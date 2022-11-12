@@ -1,5 +1,5 @@
 import { render, html } from "lit";
-import './App'
+import './src/RickAndMorty'
 
 
 render(
