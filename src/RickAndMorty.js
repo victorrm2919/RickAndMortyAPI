@@ -52,6 +52,4 @@ export class App extends LitElement {
 	}
 }
 
-
-
 customElements.define('rickandmorty-app', App);
