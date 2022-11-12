@@ -1,4 +1,4 @@
-import { html, LitElement, nothing } from 'lit';
+import { html, LitElement } from 'lit';
 import styles from './styles/CardStyles';
 
 export class Card extends LitElement {

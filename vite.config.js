@@ -9,7 +9,6 @@ export default defineConfig({
 			formats: ['es'],
 		},
 		rollupOptions: {
-			external: /^lit/,
 			input: {
 				main: resolve(__dirname, 'index.html')
 			}
