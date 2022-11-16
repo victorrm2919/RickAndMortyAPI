@@ -13,5 +13,9 @@ export default defineConfig({
 				main: resolve(__dirname, 'index.html')
 			}
 		}
+	},
+	server: {
+		port: 3000,
+		open: true
 	}
 });

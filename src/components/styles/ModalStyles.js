@@ -31,6 +31,7 @@ export default css`
 		height: 100%;
 		background-color: rgba(0, 0, 0, 0.7);
 		animation: puff-in-center 0.4s ease-in-out both;
+		transition: all 0.3s ease-in-out;
 	}
 
 	.modal__content {
@@ -39,17 +40,30 @@ export default css`
 		flex-direction: column;
 		border-radius: 10px;
 		background-color: var(--color-secondary);
-		max-width: 800px;
-		max-height: 400px;
-		margin: 0 0.5rem;
+		margin: 0;
 		padding: 1rem 2rem;
-		transition: all 0.3s ease-in-out;
+		transition: 0.3s ease-in-out;
+		max-width: 60vw;
+	}
+
+	@media screen and (min-width: 768px) {
+		.modal__content {
+			max-width: 800px;
+			max-height: 400px;
+			margin: 0 0.5rem
+		}
 	}
 
 	.modal__header {
 		position: relative;
 		width: 100%;
 		padding: 0.5rem;
+		text-align: center;
+	}
+
+	.modal__header h3 {
+		display: block;
+		width: 90%;
 	}
 
 	.modal__title {
@@ -63,7 +77,7 @@ export default css`
 		right: 0;
 		bottom: 0;
 		color: var(--color-primary);
-		border:none;
+		border: none;
 		border-radius: 100%;
 		width: 30px;
 		height: 30px;
@@ -95,9 +109,17 @@ export default css`
 	.modal__body {
 		width: 100%;
 		display: flex;
-		justify-content: space-around;
+		flex-direction: column;
+		justify-content: center;
 		align-items: center;
-		margin: 1rem;
+		padding: 1rem 0;
+	}
+
+	@media screen and (min-width: 768px) {
+		.modal__body {
+			justify-content: space-around;
+			flex-direction: row;
+		}
 	}
 
 	.modal__img {
@@ -107,7 +129,13 @@ export default css`
 		max-width: 100%;
 		width: 95%;
 		max-width: 200px;
-		margin: auto;
+		margin: 0;
+	}
+
+	@media screen and (min-width: 768px) {
+		.modal__img {
+			margin: auto;
+		}
 	}
 
 	.modal__img img {

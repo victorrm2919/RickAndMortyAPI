@@ -19,8 +19,8 @@ export class Controller extends LitElement {
 			pages: 10,
 			next: { name: '>', disabled: false },
 		};
-		this.lastPage = 15;
-		this.rangePages = 15;
+		this.lastPage = window.screen.width < 768 ? 10 : 15;
+		this.rangePages = this.lastPage;
 		this.pageActive = 1;
 		this.initPage = 0;
 	}
@@ -84,7 +84,7 @@ export class Controller extends LitElement {
 			const sumPages =
 				this.initPage + this.rangePages > this.buttons.pages
 					? this.buttons.pages - this.lastPage
-					: 15;
+					: this.rangePages;
 
 			this.lastPage = this.initPage + sumPages;
 		}

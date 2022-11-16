@@ -13,6 +13,10 @@ export class Header extends LitElement {
 		this.title = 'Envía un titulo';
 	}
 
+	changeTheme(e) {
+		console.log(e);
+	}
+
 	render() {
 		return html`
 			<div class="header">

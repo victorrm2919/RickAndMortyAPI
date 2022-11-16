@@ -4,7 +4,6 @@ export default css`
 	:host {
 		--card-width: 200px;
 		--card-height: 300px;
-
 		display: block;
 		margin: auto;
 	}
