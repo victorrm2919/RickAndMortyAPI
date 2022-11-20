@@ -9,27 +9,25 @@ html {
 	box-sizing: inherit;
 }
 
+:root {
+	--color-primary: #181818;
+	--color-secondary: #eeeeee;
+	--color-card: #f7f7f7;
+	--shadow: rgb(0, 0, 0, 0.35);
+}
+
+body.dark {
+	--color-primary: #eeeeee;
+	--color-secondary: #181818;
+	--color-card: #181818;
+	--shadow: rgba(221, 221, 221, 0.35);
+}
+
 body {
 	font-family: 'Open Sans', sans-serif;
 	overflow-x: hidden;
-}
-
-:root {
-	--color-primary: #24191a;
-	--color-secondary: #eeeeee;
-	--color-card: #f7f7f7;
-}
-
-.theme {
-	color: var(--color-primary);
 	background-color: var(--color-secondary);
 }
-
-.theme-alt {
-	color: var(--color-secondary);
-	background-color: var(--color-primary);
-}
-
 
 .modal--active {
 	overflow: hidden;

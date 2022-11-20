@@ -40,6 +40,7 @@ export default css`
 		flex-direction: column;
 		border-radius: 10px;
 		background-color: var(--color-secondary);
+		color: var(--color-primary);
 		margin: 0;
 		padding: 1rem 2rem;
 		transition: 0.3s ease-in-out;
@@ -77,6 +78,7 @@ export default css`
 		right: 0;
 		bottom: 0;
 		color: var(--color-primary);
+		background-color: var(--color-secondary);
 		border: none;
 		border-radius: 100%;
 		width: 30px;
@@ -94,13 +96,13 @@ export default css`
 
 	.modal__close:hover {
 		background-color: var(--color-primary);
-		color: hsl(0, 0%, 100%);
+		color: var(--color-secondary);
 		box-shadow: var(--color-primary) 0px 7px 10px 0px;
 	}
 
 	.modal__close:active {
 		background-color: var(--color-primary);
-		color: hsl(0, 0%, 100%);
+		color: var(--color-secondary);
 		box-shadow: var(--color-primary) 0px 0px 0px 0px;
 		transform: translateY(2px);
 		transition: 100ms;

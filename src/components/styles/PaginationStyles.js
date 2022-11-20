@@ -7,7 +7,7 @@ export default css`
 		justify-content: center;
 		align-items: center;
 		margin-bottom: 2rem;
-		box-shadow: rgb(0 0 0 / 15%) 0 5px 8px;
+		box-shadow: var(--shadow) 0 5px 8px;
 	}
 
 	@media screen and (min-width: 768px) {
@@ -24,6 +24,7 @@ export default css`
 		border-radius: 5px;
 		border: 0;
 		background-color: var(--color-secondary);
+		color: var(--color-primary);
 		transition: all 0.5s ease;
 		text-align: center;
 		cursor: pointer;
@@ -40,14 +41,14 @@ export default css`
 	.pagination button:hover:not(:disabled) {
 		letter-spacing: 2px;
 		background-color: var(--color-primary);
-		color: hsl(0, 0%, 100%);
+		color: var(--color-secondary);
 		box-shadow: var(--color-primary) 0px 7px 29px 0px;
 	}
 
 	.pagination button:active:not(:disabled) {
 		letter-spacing: 3px;
 		background-color: var(--color-primary);
-		color: hsl(0, 0%, 100%);
+		color: var(--color-secondary);
 		box-shadow: var(--color-primary) 0px 0px 0px 0px;
 		transform: translateY(10px);
 		transition: 100ms;
@@ -59,6 +60,6 @@ export default css`
 
 	.pagination button.btnPage.active {
 		background-color: var(--color-primary);
-		color: hsl(0, 0%, 100%);
+		color: var(--color-secondary);
 	}
 `;
