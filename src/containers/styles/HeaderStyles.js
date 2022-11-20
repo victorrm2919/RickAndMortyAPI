@@ -5,19 +5,19 @@ export default css`
 		text-align: center;
 	}
 
+	.header h1 {
+		font-weight: 800;
+		font-size: 1.4rem;
+		color: var(--color-primary);
+	}
+
 	@media screen and (min-width: 768px) {
 		.header h1 {
 			font-size: 3rem;
 		}
 	}
 
-	.header h1 {
-		font-weight: 800;
-		color: var(--color-primary);
-	}
-
 	:has(icon-theme) {
-        position: relative
-      }
-
+		position: relative;
+	}
 `;

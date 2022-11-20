@@ -28,21 +28,18 @@ export class Header extends LitElement {
 
 		const themeCookie = cookie('theme');
 		this.iconTheme = themeCookie === 'light' ? sun : moon;
-		document.body.className = themeCookie
+		document.body.className = themeCookie;
 	}
 
 	changeTheme() {
-
 		cookie('theme') === 'light'
 			? (document.cookie = 'theme=dark')
 			: (document.cookie = 'theme=light');
 
-
 		const themeCookie = cookie('theme');
 
 		this.iconTheme = themeCookie === 'light' ? sun : moon;
-		document.body.className = themeCookie
-
+		document.body.className = themeCookie;
 	}
 
 	render() {
