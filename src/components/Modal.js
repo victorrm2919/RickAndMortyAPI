@@ -19,18 +19,18 @@ export class Modal extends LitElement {
 	}
 
 	_closeModal() {
-		this.dispatchEvent(new CustomEvent('closeModal', {
-			detail: true
-		}))
+		this.dispatchEvent(
+			new CustomEvent('closeModal', {
+				detail: true,
+			})
+		);
 	}
 
 	get modalBody() {
 		return html`
 			<div class="modal__header">
 				<h3 class="modal__title">${this.infoModal.name}</h3>
-				<button class="modal__close" @click=${this._closeModal}>
-					X
-				</button>
+				<button class="modal__close" @click=${this._closeModal}>X</button>
 			</div>
 			<div class="modal__body">
 				<div class="modal__img">
@@ -79,7 +79,9 @@ export class Modal extends LitElement {
 	render() {
 		return html`
 			<div class="modal">
-				<div class="modal__content">${this.contentModal}</div>
+				<div class="modal__content">
+					${this.contentModal}
+				</div>
 			</div>
 		`;
 	}

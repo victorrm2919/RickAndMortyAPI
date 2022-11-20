@@ -9,7 +9,7 @@ export default css`
 	.chaotic-orbit {
 		--uib-size: 25px;
 		--uib-speed: 1.5s;
-		--uib-color: black;
+		--uib-color: var(--color-primary);
 		position: relative;
 		display: flex;
 		align-items: center;
