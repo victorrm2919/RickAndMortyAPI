@@ -14,8 +14,8 @@ export default css`
 
 	@media (min-width: 768px) {
 		:host {
-			width: 4.7rem;
-			height: 2.7rem;
+			width: 4.1rem;
+			height: 2rem;
 		}
 	}
 
@@ -35,7 +35,7 @@ export default css`
 		height: 98%;
 		display: block;
 		border-radius: 100%;
-		margin: auto;
+		margin: 0;
 		cursor: pointer;
 	}
 	.icon__theme img {
@@ -47,6 +47,7 @@ export default css`
 	}
 
 	.label__icon.dark .icon__theme img {
+		margin: 0;
 		transform: translateX(100%)
 	}
 `;
