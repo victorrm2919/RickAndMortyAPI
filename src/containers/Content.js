@@ -26,7 +26,7 @@ export class Content extends LitElement {
 		this.buttons = [];
 		this.pageActive = 1;
 		this.updateContent = false;
-		this.showModal = false
+		this.showModal = false;
 	}
 
 	_receiveData(e) {
@@ -41,9 +41,18 @@ export class Content extends LitElement {
 		const action = e.detail;
 		this.cards = undefined;
 		action === 'next' && this.pageActive++;
-		action === 'previous' && this.pageActive--;
+
+		if (action === 'previous') {
+			if (this.pageActive - 1 < 0) {
+				this.pageActive = 1;
+			} else {
+				this.pageActive--;
+			}
+		}
+
 		action !== 'next' && action !== 'previous' && (this.pageActive = action);
 		this._selectPage(this.pageActive);
+
 	}
 
 	_selectPage(page) {
@@ -54,8 +63,6 @@ export class Content extends LitElement {
 		this.url = newUrl;
 		this.pageActive = page;
 	}
-
-
 
 	get contentApp() {
 		return html`
@@ -74,9 +81,7 @@ export class Content extends LitElement {
 	get cardsApp() {
 		return html`${this.cards.map(
 			(character) => html`
-				<card-character
-					.character=${character}
-				></card-character>
+				<card-character .character=${character}></card-character>
 			`
 		)}`;
 	}

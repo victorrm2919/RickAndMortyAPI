@@ -47,7 +47,7 @@ export default css`
 		max-width: 60vw;
 	}
 
-	@media screen and (min-width: 768px) {
+	@media (min-width: 768px) {
 		.modal__content {
 			max-width: 800px;
 			max-height: 400px;
@@ -117,7 +117,7 @@ export default css`
 		padding: 1rem 0;
 	}
 
-	@media screen and (min-width: 768px) {
+	@media (min-width: 768px) {
 		.modal__body {
 			justify-content: space-around;
 			flex-direction: row;
@@ -134,7 +134,7 @@ export default css`
 		margin: 0;
 	}
 
-	@media screen and (min-width: 768px) {
+	@media (min-width: 768px) {
 		.modal__img {
 			margin: auto;
 		}

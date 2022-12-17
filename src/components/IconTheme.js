@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
-import styles from './styles/IconThemeStyle'
-
+import styles from './styles/IconThemeStyle';
+import {ifDefined} from 'lit/directives/if-defined.js';
 
 export class IconTheme extends LitElement {
 	static styles = [styles];
@@ -8,19 +8,25 @@ export class IconTheme extends LitElement {
 	static get properties() {
 		return {
 			iconTheme: { type: Object },
+			themeIcon: {type: String}
 		};
 	}
 
-  _handleClick(e) {
-    this.dispatchEvent(new CustomEvent('changeTheme', {
-			detail: 'change'
-		}))
-  }
+	_handleClick() {
+		console.log(this.shadowRoot.querySelector('a'));
+
+		console.log(this.iconTheme);
+		this.dispatchEvent(
+			new CustomEvent('changeTheme', {
+				detail: 'change',
+			})
+		);
+	}
 
 	render() {
 		return html`
-			<a class="icon__theme" @click=${this._handleClick}>
-				<figure>
+			<a class="label__icon ${ifDefined(this.themeIcon)}" @click=${this._handleClick}>
+				<figure class="icon__theme">
 					<img src=${this.iconTheme} />
 				</figure>
 			</a>

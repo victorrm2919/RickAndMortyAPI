@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit';
+import { LitElement, html, css, nothing } from 'lit';
 import styles from './styles/HeaderStyles';
 import '../components/IconTheme';
 
@@ -12,6 +12,7 @@ export class Header extends LitElement {
 	static properties = {
 		title: { type: String },
 		iconTheme: { type: Object },
+		themeCookie: { type: String },
 	};
 
 	static styles = [styles];
@@ -19,6 +20,7 @@ export class Header extends LitElement {
 	constructor() {
 		super();
 		this.title = 'Envía un titulo';
+		this.themeCookie = '';
 	}
 
 	firstUpdated() {
@@ -26,9 +28,9 @@ export class Header extends LitElement {
 			document.cookie = 'theme=light';
 		}
 
-		const themeCookie = cookie('theme');
-		this.iconTheme = themeCookie === 'light' ? sun : moon;
-		document.body.className = themeCookie;
+		this.themeCookie = cookie('theme');
+		this.iconTheme = this.themeCookie === 'light' ? sun : moon;
+		document.body.className = this.themeCookie;
 	}
 
 	changeTheme() {
@@ -36,21 +38,20 @@ export class Header extends LitElement {
 			? (document.cookie = 'theme=dark')
 			: (document.cookie = 'theme=light');
 
-		const themeCookie = cookie('theme');
+		this.themeCookie = cookie('theme');
 
-		this.iconTheme = themeCookie === 'light' ? sun : moon;
-		document.body.className = themeCookie;
+		this.iconTheme = this.themeCookie === 'light' ? sun : moon;
+		document.body.className = this.themeCookie;
 	}
 
 	render() {
 		return html`
-			<div class="header">
-				<h1>${this.title}</h1>
-				<icon-theme
-					.iconTheme=${this.iconTheme}
-					@changeTheme=${this.changeTheme}
-				></icon-theme>
-			</div>
+			<h1>${this.title}</h1>
+			<icon-theme
+				.iconTheme=${this.iconTheme}
+				@changeTheme=${this.changeTheme}
+				.themeIcon=${this.themeCookie}
+			></icon-theme>
 		`;
 	}
 }

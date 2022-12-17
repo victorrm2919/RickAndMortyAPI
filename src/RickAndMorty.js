@@ -14,6 +14,10 @@ export class App extends LitElement {
 		css`
 			:host {
 				position: relative;
+				display: block;
+				width:95%;
+				max-width: 1200px;
+				margin: auto;
 			}
 		`,
 	];

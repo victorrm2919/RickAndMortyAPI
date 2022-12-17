@@ -6,46 +6,47 @@ export default css`
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		left: calc(100vw - 18%);
-		width: 30px;
-		height: 30px;
-	}
-
-	@media screen and (min-width: 768px) {
-		:host {
-			width: 50px;
-			height: 50px;
-		}
-	}
-
-	.icon__theme {
-		display: block;
-		cursor: pointer;
-		border-radius: 100%;
+		right: 10px;
+		width: 2.3rem;
+		height: 1.1rem;
 		margin: auto 0;
 	}
 
-	.icon__theme:hover {
-		color: hsl(0, 0%, 100%);
-		box-shadow: var(--color-primary) 0px 3px 10px -3px;
+	@media (min-width: 768px) {
+		:host {
+			width: 4.7rem;
+			height: 2.7rem;
+		}
 	}
 
-	.icon__theme:active {
-		box-shadow: var(--color-primary) 0px 0px 0px 0px;
-		transform: translateY(2px);
-		transition: 100ms;
-	}
-
-	figure {
-		display: block;
+	.label__icon {
 		width: 100%;
 		height: 100%;
-		margin: 0;
+		display: block;
+		background-color: var(--color-card);
+		border-radius: 200px;
+		box-shadow: var(--shadow) 0 5px 8px;
+		cursor: pointer;
 	}
 
-	figure img {
+	.icon__theme {
+		position: relative;
+		width: 100%;
+		height: 98%;
 		display: block;
-		max-width: 100%;
+		border-radius: 100%;
 		margin: auto;
+		cursor: pointer;
+	}
+	.icon__theme img {
+		display: block;
+		max-height: 100%;
+		margin: 0;
+		transform: translateX(0);
+		transition: all 0.5s ease;
+	}
+
+	.label__icon.dark .icon__theme img {
+		transform: translateX(100%)
 	}
 `;

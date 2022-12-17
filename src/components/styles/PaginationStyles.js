@@ -10,7 +10,7 @@ export default css`
 		box-shadow: var(--shadow) 0 5px 8px;
 	}
 
-	@media screen and (min-width: 768px) {
+	@media (min-width: 768px) {
 		.pagination {
 		margin-bottom: 3rem;
 		}
@@ -30,7 +30,7 @@ export default css`
 		cursor: pointer;
 	}
 
-	@media screen and (min-width: 768px) {
+	@media (min-width: 768px) {
 		.pagination button {
 			width: 2.2rem;
 			height: 2.5rem;
