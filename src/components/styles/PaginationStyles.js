@@ -17,10 +17,11 @@ export default css`
 	}
 
 	.pagination button {
-		width: 1.4rem;
+		width: 1.5rem;
 		height: 1.7rem;
 		margin: 0 0.1rem;
-		font-size: 0.6rem;
+		font-size: 0.8rem;
+		padding: .05rem;
 		border-radius: 5px;
 		border: 0;
 		background-color: var(--color-secondary);

@@ -16,10 +16,10 @@ export class Controller extends LitElement {
 		super();
 		this.buttons = {
 			previous: { name: '<', disabled: true },
-			pages: 10,
+			pages: 6,
 			next: { name: '>', disabled: false },
 		};
-		this.lastPage = window.screen.width < 768 ? 10 : 15;
+		this.lastPage = window.screen.width < 768 ? this.buttons.pages : 15;
 		this.rangePages = this.lastPage;
 		this.pageActive = 1;
 		this.initPage = 0;
