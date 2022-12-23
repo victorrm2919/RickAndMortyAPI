@@ -13,7 +13,6 @@ export class IconTheme extends LitElement {
 	}
 
 	_handleClick() {
-		console.log(this.shadowRoot.querySelector('a'));
 
 		console.log(this.iconTheme);
 		this.dispatchEvent(
