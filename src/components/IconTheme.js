@@ -13,8 +13,6 @@ export class IconTheme extends LitElement {
 	}
 
 	_handleClick() {
-
-		console.log(this.iconTheme);
 		this.dispatchEvent(
 			new CustomEvent('changeTheme', {
 				detail: 'change',
