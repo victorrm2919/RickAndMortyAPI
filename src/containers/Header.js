@@ -46,12 +46,12 @@ export class Header extends LitElement {
 
 	render() {
 		return html`
-			<h1>${this.title}</h1>
 			<icon-theme
 				.iconTheme=${this.iconTheme}
 				@changeTheme=${this.changeTheme}
 				.themeIcon=${this.themeCookie}
 			></icon-theme>
+			<h1>${this.title}</h1>
 		`;
 	}
 }
