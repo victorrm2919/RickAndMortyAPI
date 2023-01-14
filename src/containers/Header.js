@@ -29,7 +29,16 @@ export class Header extends LitElement {
 		}
 
 		this.themeCookie = cookie('theme');
-		this.iconTheme = this.themeCookie === 'light' ? sun : moon;
+
+		if (
+			window.matchMedia &&
+			window.matchMedia('(prefers-color-scheme: dark)').matches
+		) {
+			this.iconTheme = moon;
+		} else {
+			this.iconTheme = sun;
+		}
+
 		document.body.className = this.themeCookie;
 	}
 
@@ -41,16 +50,16 @@ export class Header extends LitElement {
 		this.themeCookie = cookie('theme');
 
 		this.iconTheme = this.themeCookie === 'light' ? sun : moon;
-		document.body.className = this.themeCookie;
+
+		if (this.themeCookie === 'dark') {
+			document.body.className = this.themeCookie;
+		} else {
+			document.body.className = '';
+		}
 	}
 
 	render() {
 		return html`
-			<icon-theme
-				.iconTheme=${this.iconTheme}
-				@changeTheme=${this.changeTheme}
-				.themeIcon=${this.themeCookie}
-			></icon-theme>
 			<h1>${this.title}</h1>
 		`;
 	}

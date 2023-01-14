@@ -16,11 +16,13 @@ html {
 	--shadow: rgb(0, 0, 0, 0.35);
 }
 
-body.dark {
-	--color-primary: #eeeeee;
-	--color-secondary: #181818;
-	--color-card: #181818;
-	--shadow: rgba(221, 221, 221, 0.35);
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-primary: #eeeeee;
+		--color-secondary: #181818;
+		--color-card: #181818;
+		--shadow: rgba(221, 221, 221, 0.35);
+	}
 }
 
 body {
