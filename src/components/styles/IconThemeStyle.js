@@ -5,8 +5,7 @@ export default css`
 		display: block;
 		position: absolute;
 		top: 0;
-		bottom: 0;
-		right: 10px;
+		left: 0;
 		width: 2.3rem;
 		height: 1.1rem;
 		margin: auto 0;
